@@ -29,7 +29,7 @@ class Scraper
         elsif student.attribute('href').value.include?('github')
           students_hash[:github] = student.attribute('href').value
         else
-          students_hash[:blog] = social.attribute('href').value
+          students_hash[:blog] = student.attribute('href').value
         end
     end
         students_hash[:profile_quote] = html.css("div.profile-quote").text
