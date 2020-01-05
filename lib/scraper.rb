@@ -30,6 +30,7 @@ class Scraper
     end
         students_hash[:profile_quote] = html.css("div.profile-quote").text
         students_hash[:bio] = html.css("div.bio-content p").text
+        binding.pry
     students_hash
   end
 end
