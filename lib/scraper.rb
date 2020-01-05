@@ -21,16 +21,15 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     student_hash = []
     html = Nokogiri::HTML(open(profile_url))
-    html.css('div.social-icon-container a').each {|student|
+    html.css('div.social-icon-container a').each do |student|
       url = student.attribute('href')
       student_hash[:twitter_url] = html if html.include?('twitter')
       student_hash[:linkedin_url] = html if html.include?('linkedin')
       student_hash[:github_url] = html if html.include?('github')
-      student_hash[:blog_url] = html if if student.css("img").attribute("src").text.include?("rss")
-    }
-    student_hash[:profile_quote] = html.css('div.profile_quote').text
-    student_hash[:bio] = html.css('div.description-holder').text
+      student_hash[:blog_url] = html if student.css("img").attribute("src").text.include?("rss")
+    end
+      student_hash[:profile_quote] = html.css('div.profile_quote').text
+      student_hash[:bio] = html.css('div.description-holder').text
     student_hash
   end
-
 end
